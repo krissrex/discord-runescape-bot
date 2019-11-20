@@ -10,4 +10,4 @@ ADD dist ./
 
 ENV NODE_ENV=production
 
-ENTRYPOINT [ "node", "index.js" ]
+CMD [ "node", "index.js" ]
