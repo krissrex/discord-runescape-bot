@@ -12,8 +12,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "watch": "tsc --watch",
-    "test": "jest"
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "dist/index.js",
+    "dev": "ts-node-dev --respawn --transpileOnly --no-notify src/index.ts"
   },
   "author": "Kristian Rekstad",
   "license": "MIT",
@@ -21,7 +24,11 @@
     "discord.js": "^11.5.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
     "prettier": "1.19.1",
+    "ts-jest": "^24.1.0",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.7.2"
   }
 }
