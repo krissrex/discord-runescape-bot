@@ -1,4 +1,7 @@
 import "./env"
+import logging from "./logging"
 
-console.log("Env:", process.env.NODE_ENV)
-console.log("Hello world from " + process.env.BOT_NAME + "!")
+const log = logging("index")
+
+log.info("Env: %s", process.env.NODE_ENV)
+log.info("Starting application: %s", process.env.BOT_NAME)
