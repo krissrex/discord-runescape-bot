@@ -1,0 +1,27 @@
+{
+  "name": "rs-bot",
+  "version": "1.0.0",
+  "description": "RuneScape Discord bot",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=12.4.0"
+  },
+  "keywords": [
+    "discord",
+    "runescape"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest"
+  },
+  "author": "Kristian Rekstad",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  },
+  "devDependencies": {
+    "prettier": "1.19.1",
+    "typescript": "^3.7.2"
+  }
+}
