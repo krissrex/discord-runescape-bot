@@ -1,5 +1,6 @@
 import discord from "discord.js"
 import logging from "../logging"
+import { textChannels } from "./util/text-channels"
 
 const log = logging("bot")
 
@@ -29,6 +30,10 @@ export class Bot {
     this.client.once("ready", () => {
       this.isReady = true
       log.info("Discord client is ready")
+      this.client.user.setActivity("Made by Kristian R", { type: "WATCHING" })
+
+      const servers = this.client.guilds.map(guild => guild.name)
+      log.info({ servers })
     })
 
     this.client.on("message", message => {
@@ -39,8 +44,8 @@ export class Bot {
       log.error("Discord token is missing!")
     } else {
       try {
-        const result = await this.client.login(this.options.token)
-        log.info("Logged in: %s", result)
+        await this.client.login(this.options.token)
+        log.info("Logged in")
       } catch (err) {
         log.error(
           { token: this.options.token },
