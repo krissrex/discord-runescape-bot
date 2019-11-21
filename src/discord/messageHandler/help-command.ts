@@ -1,4 +1,4 @@
-import { Message } from "discord.js"
+import { Message, Util } from "discord.js"
 import { AbstractBotIgnoringMessageHandler } from "./AbstractBotIgnoringMessageHandler"
 
 export interface HelpText {
@@ -31,7 +31,8 @@ export class HelpCommand extends AbstractBotIgnoringMessageHandler {
     if (message.content.trim() === "!help") {
       const helpText = this.createHelpMessage()
       if (helpText) {
-        message.channel.send(helpText)
+        const helpMessages = Util.splitMessage(helpText, { char: "\n" })
+        message.channel.send(helpMessages)
       }
     }
   }
