@@ -21,3 +21,4 @@
 | https://apps.runescape.com/runemetrics/images/skill-icons/woodcutting.png                                                                         | Skill icons                    |
 | https://secure.runescape.com/m=avatar-rs/USERNAME/chat.png                                                                                        | returns 302 to a user avatar   |
 | https://secure.runescape.com/m=avatar-rs/USERNAME/ownclan.png                                                                                     | returns a 302 to a clan avatar |
+| https://apps.runescape.com/runemetrics/xp-monthly?searchName=USERNAME&skillid=SKILL_ID                                                            | Monthly xp                     |
