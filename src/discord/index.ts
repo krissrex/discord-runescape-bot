@@ -1,7 +1,10 @@
 import { Bot } from "./bot"
 import { HelpCommand } from "./messageHandler/help-command"
 import { WikiCommand, wikiHelper } from "./messageHandler/wiki"
-import { MemberProfilesCommand } from "./messageHandler/member-profiles-command"
+import {
+  MemberProfilesCommand,
+  memberProfileHelpProvider,
+} from "./messageHandler/member-profiles-command"
 import {
   SkillXpCommand,
   skillXpHelpText,
@@ -18,6 +21,7 @@ export function startBot() {
   helpCommand.helpTextProviders.push(wikiHelper)
 
   bot.messageHandlers.push(new MemberProfilesCommand())
+  helpCommand.helpTextProviders.push(memberProfileHelpProvider)
 
   bot.messageHandlers.push(new SkillXpCommand())
   helpCommand.helpTextProviders.push(skillXpHelpText)

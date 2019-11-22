@@ -18,7 +18,12 @@ export class MemberProfilesCommand extends AbstractBotIgnoringMessageHandler {
       const names = this.fetchUserNames(message)
       const profiles = await this.findValidProfiles(names)
       const response = profiles
-        .map(({ profile }) => `${profile.name}\t (lvl ${profile.totalskill})`)
+        .map(({ name, profile }) => {
+          if (!profile.name) {
+            return `${name}\t Error: ${profile.error}`
+          }
+          return `${profile.name}\t (lvl ${profile.totalskill})`
+        })
         .join("\n")
 
       if (loadingMessage instanceof Message) {
@@ -80,6 +85,16 @@ export const ProfileHelpProvider: HelpProvider = {
       command: command,
       description:
         "Load the username and total level of all members in this server. Uses the nickname to find rs3 player name",
+    }
+  },
+}
+
+export const memberProfileHelpProvider: HelpProvider = {
+  getHelpText() {
+    return {
+      command: command,
+      description:
+        "Get the profiles of every account in the server. Reads nicknames. Separate names with `|`.",
     }
   },
 }

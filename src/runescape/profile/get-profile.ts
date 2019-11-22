@@ -3,9 +3,14 @@ import Axios, { AxiosResponse } from "axios"
 export async function getProfile(
   username: string
 ): Promise<RuneMetricsProfile> {
-  const url = `https://apps.runescape.com/runemetrics/profile?user=${username}&activities=0`
+  const url = "https://apps.runescape.com/runemetrics/profile"
 
-  const response: AxiosResponse<RuneMetricsProfile> = await Axios.get(url)
+  const response: AxiosResponse<RuneMetricsProfile> = await Axios.get(url, {
+    params: {
+      user: username,
+      activities: 0,
+    },
+  })
   if (response.data && response.data.error !== "NO_PROFILE") {
     return response.data
   }
