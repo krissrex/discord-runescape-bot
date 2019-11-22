@@ -94,7 +94,7 @@ export const memberProfileHelpProvider: HelpProvider = {
     return {
       command: command,
       description:
-        "Get the profiles of every account in the server. Reads nicknames. Separate names with `|`.",
+        "Get the profiles of every account in the server. Reads nicknames. Separate your usernames with `|`.",
     }
   },
 }

@@ -82,7 +82,7 @@ export const skillXpHelpText: HelpProvider = {
     return {
       command: command,
       description:
-        "Get the level for a user's skill. Arguments: username skill",
+        "Get the level for a user's skill. Arguments: `username` `skill`",
     }
   },
 }

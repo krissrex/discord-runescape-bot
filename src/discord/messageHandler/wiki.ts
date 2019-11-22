@@ -25,7 +25,8 @@ export const wikiHelper: HelpProvider = {
   getHelpText() {
     return {
       command: wikiCommand,
-      description: "Get a runescape wiki link. Usage: /wiki Dragon Rider Lance",
+      description:
+        "Get a runescape wiki link. Usage: `/wiki Dragon Rider Lance`",
     }
   },
 }
