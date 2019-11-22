@@ -1,6 +1,8 @@
+import { fuzzySkillName } from "./fuzzy-skill-name"
+
 export interface Skill {
   id: number
-  name: string
+  name: SkillName
   color: string
   maxLevel?: number
   skillCurve?: "master"
@@ -44,3 +46,56 @@ export function skillFromId(id: number): Skill {
   }
   return skill
 }
+
+/**
+ *
+ * @param name skill name search string
+ * @throws Error if skill id not found
+ */
+export function skillIdFromString(name: string): number {
+  name = name.trim().toLowerCase()
+  let skill = skills.find(skill => skill.name.toLowerCase() === name)
+
+  if (!skill) {
+    const match = fuzzySkillName(name)
+    if (match) {
+      skill = skills.find(skill => skill.name === match)
+    }
+  }
+
+  if (!skill) {
+    throw new Error("Unable to find skill id for: " + name)
+  }
+
+  return skill.id
+}
+
+export type SkillName =
+  | "Overall"
+  | "Attack"
+  | "Defence"
+  | "Strength"
+  | "Constitution"
+  | "Ranged"
+  | "Prayer"
+  | "Magic"
+  | "Cooking"
+  | "Woodcutting"
+  | "Fletching"
+  | "Fishing"
+  | "Firemaking"
+  | "Crafting"
+  | "Smithing"
+  | "Mining"
+  | "Herblore"
+  | "Agility"
+  | "Thieving"
+  | "Slayer"
+  | "Farming"
+  | "Runecrafting"
+  | "Hunter"
+  | "Construction"
+  | "Summoning"
+  | "Dungeoneering"
+  | "Divination"
+  | "Invention"
