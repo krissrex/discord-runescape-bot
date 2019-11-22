@@ -1,6 +1,5 @@
 import discord from "discord.js"
 import logging from "../logging"
-import { textChannels } from "./util/text-channels"
 
 const log = logging("bot")
 

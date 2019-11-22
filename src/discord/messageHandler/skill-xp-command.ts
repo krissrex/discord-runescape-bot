@@ -8,6 +8,7 @@ import {
 } from "../../runescape/skill/skill-from-id"
 import { levelFromXp } from "../../runescape/skill/xp"
 import logging from "../../logging"
+import { HelpProvider } from "./help-command"
 
 const log = logging("command:skill-xp-command")
 
@@ -74,4 +75,14 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
       }
     }
   }
+}
+
+export const skillXpHelpText: HelpProvider = {
+  getHelpText() {
+    return {
+      command: command,
+      description:
+        "Get the level for a user's skill. Arguments: username skill",
+    }
+  },
 }
