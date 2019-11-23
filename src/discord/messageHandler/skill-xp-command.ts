@@ -35,25 +35,32 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
                 skillName,
                 skillId
               )
-              const monthlyXpGain = gains.monthlyXpGain.find(
-                gain => gain.skillId === skillId
-              )
 
-              if (monthlyXpGain) {
-                const level = levelFromXp(monthlyXpGain.totalXp)
-                const officialSkill = skillFromId(skillId)
+              if (gains.monthlyXpGain) {
+                const monthlyXpGain = gains.monthlyXpGain.find(
+                  gain => gain.skillId === skillId
+                )
 
-                const lastMonthIndex = monthlyXpGain.monthData.length - 1
-                const lastMonth = monthlyXpGain.monthData[lastMonthIndex]
-                let lastMonthGains = 0
-                if (lastMonth) {
-                  lastMonthGains = lastMonth.xpGain
-                }
+                if (monthlyXpGain) {
+                  const level = levelFromXp(monthlyXpGain.totalXp)
+                  const officialSkill = skillFromId(skillId)
 
-                if (loadingMessage instanceof Message) {
-                  loadingMessage.edit(
-                    `${username} has level ${level} in ${officialSkill.name} where ${lastMonthGains} came this month.`
-                  )
+                  const lastMonthIndex = monthlyXpGain.monthData.length - 1
+                  const lastMonth = monthlyXpGain.monthData[lastMonthIndex]
+                  let lastMonthGains = 0
+                  if (lastMonth) {
+                    lastMonthGains = lastMonth.xpGain
+                  }
+
+                  if (loadingMessage instanceof Message) {
+                    loadingMessage.edit(
+                      `${username} has level ${level} in ${officialSkill.name} where ${lastMonthGains} came this month.`
+                    )
+                  }
+                } else {
+                  if (loadingMessage instanceof Message) {
+                    loadingMessage.edit("Failed.")
+                  }
                 }
               } else {
                 if (loadingMessage instanceof Message) {
