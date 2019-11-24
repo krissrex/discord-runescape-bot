@@ -13,6 +13,10 @@ import {
   MaxedCommand,
   maxedCommandHelpProvider,
 } from "./messageHandler/maxed-command"
+import {
+  PortablesCommand,
+  portablesHelpProvider,
+} from "./messageHandler/portables-command"
 
 export function startBot() {
   const bot = new Bot()
@@ -32,6 +36,9 @@ export function startBot() {
 
   bot.messageHandlers.push(new MaxedCommand())
   helpCommand.helpTextProviders.push(maxedCommandHelpProvider)
+
+  bot.messageHandlers.push(new PortablesCommand())
+  helpCommand.helpTextProviders.push(portablesHelpProvider)
 
   bot.start()
 }
