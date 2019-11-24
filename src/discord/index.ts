@@ -26,6 +26,10 @@ import {
   VisWaxHelpProvider,
 } from "./messageHandler/vis-wax-command"
 import logging from "../logging"
+import {
+  VoiceOfSerenCommand,
+  voiceOfSerenHelpProvider,
+} from "./messageHandler/vos-command"
 
 const log = logging("discord")
 
@@ -56,6 +60,9 @@ export function startBot() {
 
   bot.messageHandlers.push(new VisWaxCommand())
   helpCommand.helpTextProviders.push(VisWaxHelpProvider)
+
+  bot.messageHandlers.push(new VoiceOfSerenCommand())
+  helpCommand.helpTextProviders.push(voiceOfSerenHelpProvider)
 
   log.info("Loaded " + bot.messageHandlers.length + " message handlers")
   bot.start()
