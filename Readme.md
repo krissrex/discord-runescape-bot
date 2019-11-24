@@ -2,21 +2,21 @@
 
 ## Commands
 
-> ## !help - Display this help text
+> !help - Display this help text
 >
-> ## /wiki - Get a runescape wiki link. Usage: /wiki Dragon Rider Lance
+> /wiki - Get a runescape wiki link. Usage: `/wiki Dragon Rider Lance`
 >
-> ## !profiles - Get the profiles of every account in the server. Reads nicknames. Separate your usernames >with |.
+> !profiles - Get the profiles of every account in the server. Reads nicknames. Separate your usernames with `|`.
 >
-> ## !level - Get the level for a user's skill. Arguments: username skill
+> !level - Get the level for a user's skill. Arguments: `username` `skill`
 >
-> ## !maxed - Get a player's progress towards max. Arguments: username
+> !maxed - Get a player's progress towards max. Arguments: `username`
 >
-> ## !portables - Returns the portables spreadsheet URL
+> !portables - Returns the portables spreadsheet URL
 >
-> ## !ge - Gets the item price. Usage: !ge dragon rider lance
+> !ge - Gets the item price. Usage: `!ge dragon rider lance`
 >
-> ## !vis - Returns the link to the current vis wax combo.
+> !vis - Returns the link to the current vis wax combo.
 >
 > !vos - Returns the current active voice of seren in Priffidnas.
 
