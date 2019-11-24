@@ -57,7 +57,8 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
   ): string {
     let output = `${username} is ${stats.totalPercentToMax}% to max.`
     output += `\nHe has ${stats.maxedSkillCount} of ${skills.length} skills at 99, which is ${stats.percentSkillsMaxed}%.`
-    output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${stats.totalRemainingXp} xp:`
+    const totalRemainingXp = addThousandsSeparator(stats.totalRemainingXp)
+    output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${totalRemainingXp} xp:`
     for (const skill of stats.remaining) {
       const skillName = skillFromId(skill.skillId).name
       const remainingXp = addThousandsSeparator(skill.remaining)
