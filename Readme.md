@@ -1,8 +1,28 @@
 # RuneScape Discord bot
 
+## Commands
+
+> ## !help - Display this help text
+>
+> ## /wiki - Get a runescape wiki link. Usage: /wiki Dragon Rider Lance
+>
+> ## !profiles - Get the profiles of every account in the server. Reads nicknames. Separate your usernames >with |.
+>
+> ## !level - Get the level for a user's skill. Arguments: username skill
+>
+> ## !maxed - Get a player's progress towards max. Arguments: username
+>
+> ## !portables - Returns the portables spreadsheet URL
+>
+> ## !ge - Gets the item price. Usage: !ge dragon rider lance
+>
+> ## !vis - Returns the link to the current vis wax combo.
+>
+> !vos - Returns the current active voice of seren in Priffidnas.
+
 ## Contributing
 
-## Running
+### Running
 
 Get a discord bot token and start `npm run dev`.
 Set the token in a `.env.development` file.
