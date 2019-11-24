@@ -7,7 +7,7 @@ interface QuestResponse {
 
 interface Quest {
   title: string
-  status: "COMPLETED" | "NOT_STARTED"
+  status: "COMPLETED" | "NOT_STARTED" | "STARTED" | "NOT_ELIGIBLE"
   /** Use `questDifficultyToString` to convert this number */
   difficulty: number
   members: boolean
