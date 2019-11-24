@@ -87,7 +87,7 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
   }
 }
 
-export const skillXpHelpText: HelpProvider = {
+export const skillXpHelpProvider: HelpProvider = {
   getHelpText() {
     return {
       command: command,

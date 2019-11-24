@@ -1,4 +1,7 @@
 import Axios, { AxiosResponse } from "axios"
+import logging from "../../logging"
+
+const log = logging("get-profile")
 
 export async function getProfile(
   username: string
@@ -12,6 +15,14 @@ export async function getProfile(
     },
   })
   if (response.data && response.data.error !== "NO_PROFILE") {
+    if (response.data.skillvalues) {
+      response.data.skillvalues = response.data.skillvalues.map(values => {
+        return {
+          ...values,
+          xp: Math.floor(values.xp / 10),
+        }
+      })
+    }
     return response.data
   }
 

@@ -21,7 +21,7 @@ export class WikiCommand extends AbstractBotIgnoringMessageHandler {
   }
 }
 
-export const wikiHelper: HelpProvider = {
+export const wikiCommandHelpProvider: HelpProvider = {
   getHelpText() {
     return {
       command: wikiCommand,
