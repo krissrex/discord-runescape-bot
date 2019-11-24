@@ -6,6 +6,7 @@ import { xpUntil99, TOTAL_XP_AT_ALL_99 } from "../../runescape/skill/xp"
 import { skillFromId } from "../../runescape/skill/skill-from-id"
 import { HelpProvider } from "./help-command"
 import { addThousandsSeparator } from "../../util/add-thousands-separator"
+import { stat } from "fs"
 
 const command = "!maxed"
 
@@ -57,12 +58,17 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
   ): string {
     let output = `${username} is ${stats.totalPercentToMax}% to max.`
     output += `\nHe has ${stats.maxedSkillCount} of ${skills.length} skills at 99, which is ${stats.percentSkillsMaxed}%.`
-    const totalRemainingXp = addThousandsSeparator(stats.totalRemainingXp)
-    output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${totalRemainingXp} xp:`
-    for (const skill of stats.remaining) {
-      const skillName = skillFromId(skill.skillId).name
-      const remainingXp = addThousandsSeparator(skill.remaining)
-      output += `\n\t${skillName}: ${skill.percentTo99}% (${remainingXp} xp remaining)`
+
+    if (stats.notMaxedSkillCount > 0) {
+      const totalRemainingXp = addThousandsSeparator(stats.totalRemainingXp)
+      output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${totalRemainingXp} xp:`
+      for (const skill of stats.remaining) {
+        const skillName = skillFromId(skill.skillId).name
+        const remainingXp = addThousandsSeparator(skill.remaining)
+        output += `\n\t${skillName}: ${skill.percentTo99}% (${remainingXp} xp remaining)`
+      }
+    } else {
+      output += `\nGz, you're maxed! :partying_face:`
     }
     return output
   }
@@ -82,7 +88,7 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
 
     const totalRemainingXp = remaining
       .map(skill => skill.remaining)
-      .reduce((sum, xp) => sum + xp)
+      .reduce((sum, xp) => sum + xp, 0)
     const totalXpAt99 = TOTAL_XP_AT_ALL_99
     const totalPercentToMax = Math.round(
       (100 * (totalXpAt99 - totalRemainingXp)) / totalXpAt99
