@@ -17,6 +17,10 @@ import {
   PortablesCommand,
   portablesHelpProvider,
 } from "./messageHandler/portables-command"
+import {
+  GePriceCommand,
+  GePriceCommandHelpProvider,
+} from "./messageHandler/ge-price-command"
 
 export function startBot() {
   const bot = new Bot()
@@ -39,6 +43,9 @@ export function startBot() {
 
   bot.messageHandlers.push(new PortablesCommand())
   helpCommand.helpTextProviders.push(portablesHelpProvider)
+
+  bot.messageHandlers.push(new GePriceCommand())
+  helpCommand.helpTextProviders.push(GePriceCommandHelpProvider)
 
   bot.start()
 }
