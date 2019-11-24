@@ -21,6 +21,13 @@ import {
   GePriceCommand,
   GePriceCommandHelpProvider,
 } from "./messageHandler/ge-price-command"
+import {
+  VisWaxCommand,
+  VisWaxHelpProvider,
+} from "./messageHandler/vis-wax-command"
+import logging from "../logging"
+
+const log = logging("discord")
 
 export function startBot() {
   const bot = new Bot()
@@ -47,5 +54,9 @@ export function startBot() {
   bot.messageHandlers.push(new GePriceCommand())
   helpCommand.helpTextProviders.push(GePriceCommandHelpProvider)
 
+  bot.messageHandlers.push(new VisWaxCommand())
+  helpCommand.helpTextProviders.push(VisWaxHelpProvider)
+
+  log.info("Loaded " + bot.messageHandlers.length + " message handlers")
   bot.start()
 }
