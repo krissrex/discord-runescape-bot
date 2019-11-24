@@ -16,7 +16,7 @@ interface Quest {
   userEligible: boolean
 }
 
-export function getUserQuests(username: string) {
+export async function getUserQuests(username: string) {
   const url = "https://apps.runescape.com/runemetrics/quests"
 
   try {
