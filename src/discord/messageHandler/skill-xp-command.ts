@@ -19,10 +19,11 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
   protected async doHandle(message: Message) {
     if (message.content.startsWith(command)) {
       const command = toCommand(message)
-      if (command.arguments.length === 2) {
+      const argLength = command.arguments.length
+      if (argLength >= 2) {
         try {
-          const username = command.arguments[0]
-          const skillName = command.arguments[1]
+          const username = command.arguments.slice(0, argLength - 1).join(" ")
+          const skillName = command.arguments[argLength - 1]
           if (username) {
             try {
               const skillId = skillIdFromString(skillName)
