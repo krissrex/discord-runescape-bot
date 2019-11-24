@@ -31,7 +31,7 @@ export class HelpCommand extends AbstractBotIgnoringMessageHandler {
     if (message.content.trim() === "!help") {
       let helpText = this.createHelpMessage()
       helpText +=
-        "\n~~~\nSource code can be found at: https://github.com/krissrex/discord-runescape-bot"
+        "\n~~~\nMade by Kristian R.\nSource code can be found at: https://github.com/krissrex/discord-runescape-bot"
       if (helpText) {
         const helpMessages = Util.splitMessage(helpText, { char: "\n" })
         message.channel.send(helpMessages)
