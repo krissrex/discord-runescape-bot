@@ -9,6 +9,7 @@ import {
 import { levelFromXp } from "../../runescape/skill/xp"
 import logging from "../../logging"
 import { HelpProvider } from "./help-command"
+import { addThousandsSeparator } from "../../util/add-thousands-separator"
 
 const log = logging("command:skill-xp-command")
 
@@ -53,8 +54,10 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
                   }
 
                   if (loadingMessage instanceof Message) {
+                    const total = addThousandsSeparator(monthlyXpGain.totalXp)
+                    const thisMonth = addThousandsSeparator(lastMonthGains)
                     loadingMessage.edit(
-                      `${username} has level ${level} in ${officialSkill.name} where ${lastMonthGains} came this month.`
+                      `${username} has level ${level} in ${officialSkill.name}. Total xp is ${total} where ${thisMonth} xp came this month.`
                     )
                   }
                 } else {
