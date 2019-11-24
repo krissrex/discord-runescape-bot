@@ -9,6 +9,20 @@ import { addThousandsSeparator } from "../../util/add-thousands-separator"
 
 const command = "!maxed"
 
+interface PlayerStats {
+  maxedSkillCount: number
+  notMaxedSkillCount: number
+  percentSkillsMaxed: number
+  remaining: {
+    skillId: number
+    remaining: number
+    max: number
+    percentTo99: number
+  }[]
+  totalRemainingXp: number
+  totalPercentToMax: number
+}
+
 export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
   protected async doHandle(message: Message) {
     if (message.content.startsWith(command)) {
@@ -17,7 +31,7 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
         const username = command.arguments[0]
         if (username) {
           const loadingMessage = await message.channel.send(
-            "Loading skills for " + username + "..."
+            `Loading skills for ${username}...`
           )
           const profile = await getProfile(username)
           if (profile.name) {
@@ -25,14 +39,7 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
             const stats = this.calculateSkillStats(skills)
 
             if (loadingMessage instanceof Message) {
-              let output = `${profile.name} is ${stats.totalPercentToMax}% to max.`
-              output += `\nHe has ${stats.maxedSkillCount} of ${skills.length} skills at 99, which is ${stats.percentSkillsMaxed}%.`
-              output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${stats.totalRemainingXp} xp:`
-              for (const skill of stats.remaining) {
-                const skillName = skillFromId(skill.skillId).name
-                const remainingXp = addThousandsSeparator(skill.remaining)
-                output += `\n\t${skillName}: ${skill.percentTo99}% (${remainingXp} xp remaining)`
-              }
+              const output = this.calculateMessage(profile.name, stats, skills)
               loadingMessage.edit(output)
             }
           }
@@ -43,7 +50,23 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
     }
   }
 
-  calculateSkillStats(skills: Skill[]) {
+  calculateMessage(
+    username: string,
+    stats: PlayerStats,
+    skills: Skill[]
+  ): string {
+    let output = `${username} is ${stats.totalPercentToMax}% to max.`
+    output += `\nHe has ${stats.maxedSkillCount} of ${skills.length} skills at 99, which is ${stats.percentSkillsMaxed}%.`
+    output += `\n${stats.notMaxedSkillCount} skills are missing a total of ${stats.totalRemainingXp} xp:`
+    for (const skill of stats.remaining) {
+      const skillName = skillFromId(skill.skillId).name
+      const remainingXp = addThousandsSeparator(skill.remaining)
+      output += `\n\t${skillName}: ${skill.percentTo99}% (${remainingXp} xp remaining)`
+    }
+    return output
+  }
+
+  calculateSkillStats(skills: Skill[]): PlayerStats {
     const maxedSkillCount = this.getNumberOf99Skills(skills)
     const notMaxedSkillCount = skills.length - maxedSkillCount
     const percentSkillsMaxed = Math.round(
