@@ -22,7 +22,7 @@ export function levelFromXp(
 
   const curve = getSkillCurve(skillCurve)
 
-  const maxLevel = Math.min(Object.keys(curve).length, MAX_VIRTUAL_LEVEL)
+  const maxLevel = Math.min(curve.size, MAX_VIRTUAL_LEVEL)
   for (let level = 2; level < maxLevel; level++) {
     const xpThreshold = curve.get(level) || 0
     if (xp < xpThreshold && xp >= (curve.get(level - 1) || 0)) {
