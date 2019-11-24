@@ -35,7 +35,10 @@ export class GePriceCommand extends AbstractBotIgnoringMessageHandler {
                 const alchPrice = calculateHighAlch(priceData.value)
                 const alch = addThousandsSeparator(alchPrice)
                 loadingMessage.edit(
-                  `${priceData.itemName} costs ${price} (${priceData.tradeLimit} trade limit). High alch: ${alch}`
+                  `${priceData.itemName} costs ${price} (${priceData.tradeLimit} trade limit). High alch: ${alch}` +
+                    `\nhttps://runescape.wiki/w/Exchange:${encodeURIComponent(
+                      name
+                    )}`
                 )
               }
             }
