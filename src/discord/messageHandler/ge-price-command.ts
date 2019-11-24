@@ -21,9 +21,13 @@ export class GePriceCommand extends AbstractBotIgnoringMessageHandler {
           "Loading prices for " + item
         )
         try {
-          const name = await searchName(item)
+          let name = await searchName(item)
           if (name) {
             log.info("Found ge name: " + name)
+            const itemUsages = this.getUsages(item)
+            if (itemUsages) {
+              name = name + ` (${itemUsages})`
+            }
             const priceData = await getGePrice(name)
             if (priceData) {
               if (loadingMessage instanceof Message) {
@@ -50,6 +54,21 @@ export class GePriceCommand extends AbstractBotIgnoringMessageHandler {
         message.channel.send("Missing argument: `itemName`")
       }
     }
+  }
+
+  /**
+   *
+   * @param itemName eg `prayer potion (3)`
+   * @returns eg `3`
+   */
+  getUsages(itemName: string): number | undefined {
+    const regex = / \((\d)\)$/
+    const matches = regex.exec(itemName)
+    if (matches) {
+      const usages = parseInt(matches[1], 10)
+      return usages
+    }
+    return undefined
   }
 }
 
