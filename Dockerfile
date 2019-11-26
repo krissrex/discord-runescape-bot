@@ -7,8 +7,8 @@ ADD package.json package-lock.json ./
 RUN npm ci --only=production
 
 ADD .env .env.production ./
-ADD dist ./
+ADD dist ./dist/
 
 ENV NODE_ENV=production
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "dist/index.js" ]
