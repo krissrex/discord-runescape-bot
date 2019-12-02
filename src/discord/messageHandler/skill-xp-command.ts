@@ -44,8 +44,11 @@ export class SkillXpCommand extends AbstractBotIgnoringMessageHandler {
                 )
 
                 if (monthlyXpGain) {
-                  const level = levelFromXp(monthlyXpGain.totalXp)
                   const officialSkill = skillFromId(skillId)
+                  const level = levelFromXp(
+                    monthlyXpGain.totalXp,
+                    officialSkill.skillCurve
+                  )
 
                   const lastMonthIndex = monthlyXpGain.monthData.length - 1
                   const lastMonth = monthlyXpGain.monthData[lastMonthIndex]
