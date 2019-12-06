@@ -30,6 +30,7 @@ import {
   VoiceOfSerenCommand,
   voiceOfSerenHelpProvider,
 } from "./messageHandler/vos-command"
+import { TexToImageCommand } from "./messageHandler/tex-to-png-command"
 
 const log = logging("discord")
 
@@ -63,6 +64,8 @@ export function startBot() {
 
   bot.messageHandlers.push(new VoiceOfSerenCommand())
   helpCommand.helpTextProviders.push(voiceOfSerenHelpProvider)
+
+  bot.messageHandlers.push(new TexToImageCommand())
 
   log.info("Loaded " + bot.messageHandlers.length + " message handlers")
   bot.start()
