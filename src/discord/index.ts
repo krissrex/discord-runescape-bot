@@ -30,7 +30,11 @@ import {
   VoiceOfSerenCommand,
   voiceOfSerenHelpProvider,
 } from "./messageHandler/vos-command"
-import { TexToImageCommand } from "./messageHandler/tex-to-png-command"
+import {
+  TexToImageCommand,
+  texHelpProvider,
+} from "./messageHandler/tex-to-png-command"
+import { CalcCommand, calcHelpProvider } from "./messageHandler/calc-command"
 
 const log = logging("discord")
 
@@ -66,6 +70,12 @@ export function startBot() {
   helpCommand.helpTextProviders.push(voiceOfSerenHelpProvider)
 
   bot.messageHandlers.push(new TexToImageCommand())
+  helpCommand.helpTextProviders.push(texHelpProvider)
+
+  if (process.env.WOLFRAM_ALPHA_ENABLED === "true") {
+    bot.messageHandlers.push(new CalcCommand())
+    helpCommand.helpTextProviders.push(calcHelpProvider)
+  }
 
   log.info("Loaded " + bot.messageHandlers.length + " message handlers")
   bot.start()

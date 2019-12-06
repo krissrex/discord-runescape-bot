@@ -20,3 +20,12 @@ dotenv.config({
 dotenv.config({
   path: localFile(".env"),
 })
+
+if (
+  process.env.WOLFRAM_ALPHA_APP_ID === undefined ||
+  process.env.WOLFRAM_ALPHA_APP_ID === "<missing>"
+) {
+  process.env.WOLFRAM_ALPHA_ENABLED = undefined
+} else {
+  process.env.WOLFRAM_ALPHA_ENABLED = "true"
+}

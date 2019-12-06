@@ -1,5 +1,6 @@
 import { AbstractBotIgnoringMessageHandler } from "./AbstractBotIgnoringMessageHandler"
 import { Message } from "discord.js"
+import { HelpProvider } from "./help-command"
 
 const command = "!tex"
 
@@ -17,8 +18,9 @@ function createLatexImageUrl(tex: string): string {
 
 export class TexToImageCommand extends AbstractBotIgnoringMessageHandler {
   protected doHandle(message: Message): void {
-    if (message.content.startsWith(command)) {
-      const tex = message.content.substr(command.length)
+    const commandPrefix = command + " "
+    if (message.content.startsWith(commandPrefix)) {
+      const tex = message.content.substr(commandPrefix.length)
       if (tex) {
         const imageUrl = createLatexImageUrl(tex)
         message.channel.send("", {
@@ -32,4 +34,13 @@ export class TexToImageCommand extends AbstractBotIgnoringMessageHandler {
       }
     }
   }
+}
+
+export const texHelpProvider: HelpProvider = {
+  getHelpText() {
+    return {
+      command,
+      description: "Converts latex into images. Arguments: `latex text`",
+    }
+  },
 }

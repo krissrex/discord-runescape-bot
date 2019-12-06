@@ -2,15 +2,18 @@ import { AbstractBotIgnoringMessageHandler } from "./AbstractBotIgnoringMessageH
 import { Message } from "discord.js"
 import { HelpProvider } from "./help-command"
 
-const wikiCommand = "/wiki"
+const rsWikiCommand = "/wiki"
+const command = "!wiki"
 
 export class WikiCommand extends AbstractBotIgnoringMessageHandler {
-  public command: string = wikiCommand
-
   protected doHandle(message: Message): void {
-    const commandFilter = this.command + " "
-    if (message.content.startsWith(commandFilter)) {
-      const query = message.content.slice(commandFilter.length)
+    const commands = [rsWikiCommand + " ", command + " "]
+
+    if (message.content.startsWith(commands[0])) {
+      const query = message.content.substr(commands[0].length)
+      message.channel.send(this.createSearchLink(query))
+    } else if (message.content.startsWith(commands[1])) {
+      const query = message.content.substr(commands[1].length)
       message.channel.send(this.createSearchLink(query))
     }
   }
@@ -24,9 +27,8 @@ export class WikiCommand extends AbstractBotIgnoringMessageHandler {
 export const wikiCommandHelpProvider: HelpProvider = {
   getHelpText() {
     return {
-      command: wikiCommand,
-      description:
-        "Get a runescape wiki link. Usage: `/wiki Dragon Rider Lance`",
+      command: rsWikiCommand,
+      description: `Get a runescape wiki link. Alias of \`${command}\`. Usage: \`/wiki Dragon Rider Lance\``,
     }
   },
 }
