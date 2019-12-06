@@ -41,12 +41,6 @@ export function xpUntil99(skill: Skill, xp: number) {
     throw new Error("Failed to find xp curve for skill " + skill.id)
   }
   let remaining = xpAt99 - xp
-  log.info({
-    skill: skill.id,
-    xpAt99,
-    xp,
-    remaining,
-  })
   if (remaining < 0) {
     remaining = 0
   }

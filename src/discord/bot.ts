@@ -28,13 +28,12 @@ export class Bot {
   public async start() {
     this.client.once("ready", () => {
       this.isReady = true
-      log.info("Discord client is ready")
+
+      const servers = this.client.guilds.map(guild => guild.name)
+      log.info({ servers }, "Discord client is ready")
       this.client.user.setActivity("!help", {
         type: "WATCHING",
       })
-
-      const servers = this.client.guilds.map(guild => guild.name)
-      log.info({ servers })
     })
 
     this.client.on("message", message => {
