@@ -35,6 +35,10 @@ import {
   texHelpProvider,
 } from "./messageHandler/tex-to-png-command"
 import { CalcCommand, calcHelpProvider } from "./messageHandler/calc-command"
+import {
+  WolframCommand,
+  wolframHelpProvider,
+} from "./messageHandler/wolfram-command"
 
 const log = logging("discord")
 
@@ -75,6 +79,9 @@ export function startBot() {
   if (process.env.WOLFRAM_ALPHA_ENABLED === "true") {
     bot.messageHandlers.push(new CalcCommand())
     helpCommand.helpTextProviders.push(calcHelpProvider)
+
+    bot.messageHandlers.push(new WolframCommand())
+    helpCommand.helpTextProviders.push(wolframHelpProvider)
   }
 
   log.info("Loaded " + bot.messageHandlers.length + " message handlers")
