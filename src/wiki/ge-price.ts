@@ -42,8 +42,9 @@ export function parseData(data: string): GePrice {
     category   = 'Melee weapons - high level',
     examine    = 'A weapon from the Abyss.',
   */
+  // item can use both ' and " to quote the data.
   const itemIdMatch = data.match(/itemId\s*=\s*(\d+)/)
-  const itemNameMatch = data.match(/item\s*=\s*'(.*)',/)
+  const itemNameMatch = data.match(/item\s*=\s*(?:'|")(.*)(?:'|"),/)
   const membersItemMatch = data.match(/members\s*=\s*(true|false)/)
   const priceMatch = data.match(/price\s*=\s*(\d+)/)
   const tradeLimitMatch = data.match(/limit\s*=\s*(\d+)/)
