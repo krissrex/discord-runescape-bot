@@ -14,8 +14,9 @@ const command = "!ge"
 
 export class GePriceCommand extends AbstractBotIgnoringMessageHandler {
   protected async doHandle(message: Message) {
-    if (message.content.startsWith(command)) {
-      const item = message.content.substr(command.length)
+    const prefix = command + " "
+    if (message.content.startsWith(prefix)) {
+      const item = message.content.substr(prefix.length)
       if (item) {
         const loadingMessage = await message.channel.send(
           "Loading prices for " + item
