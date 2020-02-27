@@ -18,7 +18,9 @@ RUN npm ci && npm run build
 
 
 # App stage
-FROM node:12.13-alpine
+FROM arm32v7/node:12-alpine
+# Add QEMU
+COPY --from=qemu qemu-arm-static /usr/bin
 
 USER root
 WORKDIR /opt/app
