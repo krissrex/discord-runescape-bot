@@ -1,0 +1,11 @@
+image: krissrex/rs-bot:latest
+manifests:
+  - image: krissrex/rs-bot:amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: krissrex/rs-bot:arm32v7
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
