@@ -4,13 +4,17 @@ import { LEVELS, MASTER_LEVELS, getSkillCurve } from "./skill-curves"
 
 const log = logging("xp")
 
+export const SKILL_COUNT = 26 //Fixme: change when arch comes out
 export const MAX_VIRTUAL_LEVEL = 120
 export const MAX_TOTAL_XP = 5_400_000_000
 export const MAX_SKILL_XP = 200_000_000
 export const MAX_COMBAT_LEVEL = 138
 export const MAX_TOTAL_LEVEL = 2736
 export const TOTAL_XP_AT_ALL_99 =
-  26 * (LEVELS.get(99) || 0) + (MASTER_LEVELS.get(99) || 0)
+  SKILL_COUNT * (LEVELS.get(99) || 0) + (MASTER_LEVELS.get(99) || 0)
+
+export const SKILL_COUNT_OSRS = 23
+export const TOTAL_OSRS_XP_AT_ALL_99 = SKILL_COUNT_OSRS * 13_034_431
 
 export function levelFromXp(
   xp: number,

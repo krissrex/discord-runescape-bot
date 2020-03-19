@@ -18,6 +18,7 @@ export function fuzzySkillName(name: string): SkillName | undefined {
 }
 
 const abbreviations = new Map<string, SkillName>([
+  ["hitpoints", "Constitution"],
   ["all", "Overall"],
   ["total", "Overall"],
   ["atk", "Attack"],
