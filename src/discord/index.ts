@@ -12,6 +12,7 @@ import {
 import {
   MaxedCommand,
   maxedCommandHelpProvider,
+  osrsMaxedCommandHelpProvider,
 } from "./messageHandler/maxed-command"
 import {
   PortablesCommand,
@@ -60,6 +61,7 @@ export function startBot() {
 
   bot.messageHandlers.push(new MaxedCommand())
   helpCommand.helpTextProviders.push(maxedCommandHelpProvider)
+  helpCommand.helpTextProviders.push(osrsMaxedCommandHelpProvider)
 
   bot.messageHandlers.push(new PortablesCommand())
   helpCommand.helpTextProviders.push(portablesHelpProvider)
