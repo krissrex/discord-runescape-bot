@@ -54,4 +54,7 @@ const abbreviations = new Map<string, SkillName>([
   ["dung", "Dungeoneering"],
   ["div", "Divination"],
   ["inv", "Invention"],
+  ["arch", "Archaeology"],
+  ["archeology", "Archaeology"],
+  ["arc", "Archaeology"],
 ])

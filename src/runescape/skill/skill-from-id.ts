@@ -37,6 +37,7 @@ const skills: Skill[] = [
   { id: 24, name: "Dungeoneering", color: "#723920", maxLevel: 120 },
   { id: 25, name: "Divination", color: "#943fba" },
   { id: 26, name: "Invention", color: "#f7b528", skillCurve: "master" },
+  { id: 27, name: "Archaeology", color: "#b9571e", maxLevel: 120 },
 ]
 
 export function skillFromId(id: number): Skill {
@@ -99,3 +100,4 @@ export type SkillName =
   | "Dungeoneering"
   | "Divination"
   | "Invention"
+  | "Archaeology"

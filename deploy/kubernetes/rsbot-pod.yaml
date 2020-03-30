@@ -9,6 +9,7 @@ spec:
   containers:
     - name: rsbot
       image: krissrex/rs-bot
+      imagePullPolicy: Always
       env:
         - name: DISCORD_BOT_TOKEN
           valueFrom:
