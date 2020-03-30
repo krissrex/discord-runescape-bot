@@ -8,7 +8,7 @@ export interface Skill {
   skillCurve?: "master"
 }
 
-const skills: Skill[] = [
+export const skills: Skill[] = [
   { id: -1, name: "Overall", color: "#e1bb34" },
   { id: 0, name: "Attack", color: "#981414" },
   { id: 1, name: "Defence", color: "#147e98" },
@@ -25,18 +25,24 @@ const skills: Skill[] = [
   { id: 12, name: "Crafting", color: "#b6952c" },
   { id: 13, name: "Smithing", color: "#65887e" },
   { id: 14, name: "Mining", color: "#56495e" },
-  { id: 15, name: "Herblore", color: "#12453a" },
+  { id: 15, name: "Herblore", color: "#12453a", maxLevel: 120 },
   { id: 16, name: "Agility", color: "#284A95" },
   { id: 17, name: "Thieving", color: "#36175e" },
-  { id: 18, name: "Slayer", color: "#48412f" },
-  { id: 19, name: "Farming", color: "#1f7d54" },
+  { id: 18, name: "Slayer", color: "#48412f", maxLevel: 120 },
+  { id: 19, name: "Farming", color: "#1f7d54", maxLevel: 120 },
   { id: 20, name: "Runecrafting", color: "#d7eba3" },
   { id: 21, name: "Hunter", color: "#c38b4e" },
   { id: 22, name: "Construction", color: "#a8babc" },
   { id: 23, name: "Summoning", color: "#dea1b0" },
   { id: 24, name: "Dungeoneering", color: "#723920", maxLevel: 120 },
   { id: 25, name: "Divination", color: "#943fba" },
-  { id: 26, name: "Invention", color: "#f7b528", skillCurve: "master" },
+  {
+    id: 26,
+    name: "Invention",
+    color: "#f7b528",
+    maxLevel: 120,
+    skillCurve: "master",
+  },
   { id: 27, name: "Archaeology", color: "#b9571e", maxLevel: 120 },
 ]
 

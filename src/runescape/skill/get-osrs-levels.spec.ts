@@ -3,9 +3,9 @@ import { csvRows, csvSkillRows } from "./get-osrs-levels"
 describe("OSRS profile api", () => {
   describe("CSV parsing", () => {
     describe("Skills", () => {
-      it("Should be 24 skills", () => {
+      it("Should be 23 skills", () => {
         // 23 + overall
-        expect(csvSkillRows).toHaveLength(24)
+        expect(csvSkillRows).toHaveLength(23)
       })
     })
 

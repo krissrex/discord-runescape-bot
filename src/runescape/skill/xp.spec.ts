@@ -1,4 +1,32 @@
-import { levelFromXp } from "./xp"
+import {
+  levelFromXp,
+  SKILL_COUNT,
+  MAX_SKILL_XP,
+  MAX_TOTAL_XP,
+  MAX_TOTAL_LEVEL,
+} from "./xp"
+import { skills } from "./skill-from-id"
+
+describe("XP constants", () => {
+  it("Should be as many skills as in the list of skills", () => {
+    const registeredSkillCount = skills.filter(skill => skill.name != "Overall")
+      .length
+    expect(SKILL_COUNT).toBe(registeredSkillCount)
+  })
+
+  it("Should be 200m in every skill for max xp", () => {
+    expect(MAX_TOTAL_XP).toBe(SKILL_COUNT * MAX_SKILL_XP)
+  })
+
+  it("Should be total level using 120 for those that have it", () => {
+    const totalLevel = skills
+      .filter(skill => skill.name != "Overall")
+      .map(skill => skill.maxLevel || 99)
+      .reduce((sum, level) => sum + level)
+
+    expect(MAX_TOTAL_LEVEL).toBe(totalLevel)
+  })
+})
 
 describe("Level from xp", () => {
   it("Returns level 1 for 0 xp", () => {
