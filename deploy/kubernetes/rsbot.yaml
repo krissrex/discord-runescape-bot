@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rsbot-deployment
+  labels:
+    app: rsbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsbot
+  template:
+    metadata:
+      labels:
+        app: rsbot
+    spec:
+      containers:
+      - name: rsbot
+        image: krissrex/rs-bot        
+        imagePullPolicy: Always       
+        env:                          
+        - name: DISCORD_BOT_TOKEN   
+          valueFrom:                
+            secretKeyRef:           
+              name: rsbot           
+              key: discord          
+        - name: WOLFRAM_ALPHA_APP_ID
+          valueFrom:                
+            secretKeyRef:           
+              name: rsbot           
+              key: wolfram          
+
+
