@@ -39,12 +39,12 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
     }
 
     const command = toCommand(message)
-    if (command.arguments.length !== 1) {
+    if (command.arguments.length == 0) {
       message.channel.send("Arguments `username`")
       return
     }
 
-    const username = command.arguments[0]
+    const username = command.arguments.join("_") // Allow names with spaces
     if (username) {
       const game = isRs3Command ? "rs3" : "osrs"
       const loadingMessage = await message.channel.send(
@@ -94,6 +94,7 @@ export class MaxedCommand extends AbstractBotIgnoringMessageHandler {
 
         const xp = skills.find(it => it.id == skill.skillId)?.xp
         if (xp == -1) {
+          // Happens for OSRS users. No highscore gives -1 xp value in the runescape API.
           output += `\n\t${skillName}: Is not even on the highscores. Git gud (${remainingXp} xp remaining)`
         } else {
           output += `\n\t${skillName}: ${skill.percentTo99}% (${remainingXp} xp remaining)`
