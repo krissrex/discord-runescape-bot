@@ -1,0 +1,3 @@
+# Allow local modification of the .env without having to commit it
+.env
+
