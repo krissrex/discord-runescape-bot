@@ -20,13 +20,21 @@
 >
 > !vos - Returns the current active voice of seren in Priffidnas.
 
+## Deploying
+
+**Basic**: The first time, run `npm install`, then `npm build`. Then create/edit the `.env.production.local` file and add the required tokens/keys shown in `.env`. Finally, run with `npm run start`.
+
+**Kubernetes:** Use the `./deploy/kubernetes/` yaml files. First edit and apply the `rsbot-secrets.yaml`, then apply either the `rsbot-pod.yaml` or `rsbot.yaml`. The former is only a pod, the latter is a kubernetes deployment. You probably want the deployment.
+
+**Docker compose:** Use the `./deploy/docker-compose/` files. First edit the `.env`, then run `docker-compose up -d`.
+
+
 ## Contributing
 
 ### Running
 
 Get a discord bot token and start `npm run dev`.
 Set the token in a `.env.development` file.
-
 ### Structure
 
 RuneScape API stuff related calculations go in `src/runescape`.  
