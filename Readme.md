@@ -36,11 +36,11 @@ The bot requires a token from Discord to connect.
 Log in at https://discord.com/developers/applications and create an Application.
 This application will be the bot's user.
 
-**Client ID:** Go to https://discord.com/developers/applications/<BOT-ID-HERE>/information
+**Client ID:** Go to https://discord.com/developers/applications/BOT-ID-HERE/information
 and copy the `CLIENT ID`.
 Set it as `DISCORD_BOT_CLIENT_ID` in the `.env` file.
 
-**Token:** Go to https://discord.com/developers/applications/<BOT-ID-HERE>/bot
+**Token:** Go to https://discord.com/developers/applications/BOT-ID-HERE/bot
 and copy the token.
 Set it as `DISCORD_BOT_TOKEN` in the `.env` file.
 
