@@ -9,6 +9,11 @@ export interface GePrice {
   membersItem: boolean
 }
 
+/**
+ * **Note:** The wiki seems to not return prices any more.
+ * Use the `grand-exchange` module instead, to get the inaccurate prices (eg. `13.7k`).
+ * @param itemName String name for an item, like `"Rune Scimitar"`.
+ */
 export async function getGePrice(itemName: string): Promise<GePrice> {
   const encodedName = encodeURIComponent(itemName)
   const url = "https://runescape.wiki/w/Module:Exchange/" + encodedName
@@ -29,6 +34,7 @@ export async function getGePrice(itemName: string): Promise<GePrice> {
 }
 
 export function parseData(data: string): GePrice {
+  // Note: For some reason, the wiki stopped sending some of this data, like price.
   /*
   itemId     = 4151,
     price      = 71117,

@@ -7,6 +7,7 @@ import { HelpProvider } from "./help-command"
 import logging from "../../logging"
 import { addThousandsSeparator } from "../../util/add-thousands-separator"
 import { calculateHighAlch } from "../../runescape/item/high-alch"
+import { fetchExchangeDataForItemid } from "../../runescape/item/grand-exchange"
 
 const log = logging("ge-price-command")
 
@@ -32,7 +33,16 @@ export class GePriceCommand extends AbstractBotIgnoringMessageHandler {
             const priceData = await getGePrice(name)
             if (priceData) {
               if (loadingMessage instanceof Message) {
-                const price = addThousandsSeparator(priceData.price)
+                let price: string
+                if (priceData.price !== -1) {
+                  price = addThousandsSeparator(priceData.price)
+                } else {
+                  // Fallback from when wiki stopped giving price.
+                  const geData = await fetchExchangeDataForItemid(
+                    priceData.itemId
+                  )
+                  price = geData.current.price // E.g. `13.7k`
+                }
                 const alchPrice = calculateHighAlch(priceData.value)
                 const alch = addThousandsSeparator(alchPrice)
                 loadingMessage.edit(
