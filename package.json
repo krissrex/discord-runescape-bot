@@ -20,8 +20,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpileOnly --no-notify src/index.ts",
-    "debug": "ts-node-dev --transpileOnly --no-notify --nolazy --inspect-brk=9229 src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --no-notify src/index.ts",
+    "debug": "ts-node-dev --transpile-only --no-notify --nolazy --inspect-brk=9229 src/index.ts",
     "predocker:build": "npm run build",
     "docker:build": "cross-conf-env docker image build . -t $npm_package_config_imageRepo:$npm_package_version",
     "postdocker:build": "npm run docker:tag",
@@ -30,25 +30,25 @@
   "author": "Kristian Rekstad",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0",
-    "discord.js": "^11.5.1",
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "image-data-uri": "^2.0.1",
-    "pino": "^5.13.6",
-    "pino-pretty": "^3.4.0",
+    "pino": "^6.8.0",
+    "pino-pretty": "^4.3.0",
     "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.11",
-    "@types/pino": "^5.8.13",
-    "cross-conf-env": "^1.1.2",
-    "jest": "^24.9.0",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^12.19.11",
+    "@types/pino": "^6.3.4",
+    "cross-conf-env": "^1.2.1",
+    "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "prettier": "1.19.1",
-    "ts-jest": "^24.1.0",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.7.2"
+    "ts-jest": "^26.4.4",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
   }
 }

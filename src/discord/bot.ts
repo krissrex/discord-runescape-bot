@@ -29,9 +29,9 @@ export class Bot {
     this.client.once("ready", () => {
       this.isReady = true
 
-      const servers = this.client.guilds.map(guild => guild.name)
+      const servers = this.client.guilds.cache.map(guild => guild.name)
       log.info({ servers }, "Discord client is ready")
-      this.client.user.setActivity("!help", {
+      this.client.user?.setActivity("!help", {
         type: "WATCHING",
       })
     })

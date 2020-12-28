@@ -62,6 +62,8 @@ Create a free account at https://products.wolframalpha.com/api/ and copy the App
 
 ### Running
 
+Requires NodeJS version 12 or more.
+
 Get a discord bot token and client ID and set them in a `.env.development` file.
 Start `npm run dev`.
 
