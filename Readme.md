@@ -12,6 +12,8 @@
 >
 > !maxed - Get a player's progress towards max. Arguments: `username`
 >
+> !!maxed - Get an osrs player's progress towards max. Arguments: `username`
+>
 > !portables - Returns the portables spreadsheet URL
 >
 > !ge - Gets the item price. Usage: `!ge dragon rider lance`
@@ -19,6 +21,34 @@
 > !vis - Returns the link to the current vis wax combo.
 >
 > !vos - Returns the current active voice of seren in Priffidnas.
+>
+> !tex - Converts latex into images. Useful for sharing math formulas. Arguments: `latex text`
+>
+> !calc - Answers questions using Wolfram Alpha. Useful for doing math. Arguments: `your question`
+>
+> !wolfram - Returns a picture with information from Wolfram Alpha. Arguments: `question`
+
+## Tokens
+
+### Discord
+
+The bot requires a token from Discord to connect.
+Log in at https://discord.com/developers/applications and create an Application.
+This application will be the bot's user.
+
+**Client ID:** Go to https://discord.com/developers/applications/<BOT-ID-HERE>/information
+and copy the `CLIENT ID`.
+Set it as `DISCORD_BOT_CLIENT_ID` in the `.env` file.
+
+**Token:** Go to https://discord.com/developers/applications/<BOT-ID-HERE>/bot
+and copy the token.
+Set it as `DISCORD_BOT_TOKEN` in the `.env` file.
+
+### Wolfram Alpha
+
+To use the `!calc` and `!wolfram` commands, get a Wolfram Alpha token as well and set it as `WOLFRAM_ALPHA_APP_ID` in the `.env` file.
+
+Create a free account at https://products.wolframalpha.com/api/ and copy the App ID.
 
 ## Deploying
 
@@ -28,13 +58,13 @@
 
 **Docker compose:** Use the `./deploy/docker-compose/` files. First edit the `.env`, then run `docker-compose up -d`.
 
-
 ## Contributing
 
 ### Running
 
-Get a discord bot token and start `npm run dev`.
-Set the token in a `.env.development` file.
+Get a discord bot token and client ID and set them in a `.env.development` file.
+Start `npm run dev`.
+
 ### Structure
 
 RuneScape API stuff related calculations go in `src/runescape`.  
