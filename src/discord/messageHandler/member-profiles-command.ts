@@ -12,7 +12,7 @@ export class MemberProfilesCommand extends AbstractBotIgnoringMessageHandler {
   protected async doHandle(message: Message) {
     if (message.content === command) {
       const loadingMessage = await message.channel.send(
-        `Fetching ${message.guild.memberCount} profiles...`
+        `Fetching ${message.guild?.memberCount} profiles...`
       )
 
       const names = this.fetchUserNames(message)
@@ -33,9 +33,10 @@ export class MemberProfilesCommand extends AbstractBotIgnoringMessageHandler {
   }
 
   fetchUserNames(message: Message): string[] {
-    const members = message.guild.members
-      .filter(member => !member.user.bot)
-      .map(member => member.nickname || member.displayName)
+    const members =
+      message.guild?.members?.cache
+        .filter(member => !member.user.bot)
+        .map(member => member.nickname || member.displayName) ?? []
 
     const usernames = []
     for (const name of members) {
@@ -44,9 +45,9 @@ export class MemberProfilesCommand extends AbstractBotIgnoringMessageHandler {
         if (names.length > 1) {
           names.shift()
           names
-            .map(name => name.trim())
-            .filter(name => name)
-            .forEach(name => usernames.push(name))
+            .map(n => n.trim())
+            .filter(n => n)
+            .forEach(n => usernames.push(n))
         } else {
           usernames.push(name.trim())
         }

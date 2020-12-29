@@ -1,5 +1,5 @@
 import { AbstractBotIgnoringMessageHandler } from "./AbstractBotIgnoringMessageHandler"
-import { Message, Attachment } from "discord.js"
+import { Message, MessageAttachment } from "discord.js"
 import { HelpProvider } from "./help-command"
 import { answerQueryAsGifBuffer } from "../../wolfram-alpha"
 
@@ -15,7 +15,7 @@ export class WolframCommand extends AbstractBotIgnoringMessageHandler {
         if (answer !== null) {
           message.channel.send("", {
             embed: {
-              file: new Attachment(answer, "wolfram.gif"),
+              files: [new MessageAttachment(answer, "wolfram.gif")],
               title: question,
               timestamp: new Date(),
             },
